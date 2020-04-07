@@ -12,6 +12,7 @@ output: html_document
 setwd("D:/Coursera Esp/Reproducible Research/RepData_PeerAssessment1")
 if (!file.exists('/repdata_data_activity.zip')){
         unzip("repdata_data_activity.zip", exdir = getwd())
+}
         data <- read.csv(file="activity.csv", header=TRUE)
         data$date <- as.Date(data$date)
 ```
