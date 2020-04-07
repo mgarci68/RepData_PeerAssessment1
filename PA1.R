@@ -16,8 +16,11 @@ data$date <- as.Date(data$date)
 ##What is mean total number of steps taken per day?
 
 t_steps <- aggregate(steps ~ date, data, sum)
+png("plot1.png", 480,480,"px")
 hist(t_steps$steps,col = c("red","blue","grey","green","black"),
      main = "Total Stes taken per day", xlab ="# Steps")
+dev.off()
+
 mn <- mean(t_steps$steps, na.rm = TRUE)
 mdn <- median(t_steps$steps, na.rm= TRUE)
 
@@ -29,7 +32,7 @@ library(ggplot2)
 
 mean_i_steps <- aggregate(steps ~ interval, data , FUN =  mean)
 
-png("plot1.png", 480,480,"px")
+png("plot2.png", 480,480,"px")
 qplot(interval, steps ,data = mean_i_steps,col = interval,geom =("line"),
       main = "Average Daily Activity Pattern", xlab="5-min Interval", 
       ylab = "Steps taken Avrg across all days " )
@@ -60,7 +63,7 @@ mval2 <- is.na(new_data)
 sum(mval2)
 
 nmv_steps <- aggregate(steps ~ date, new_data, sum)
-png("plot2.png", 480,480,"px")
+png("plot3.png", 480,480,"px")
 hist(nmv_steps$steps,col = c("red","blue","grey","green","black"),
      main = "Total Stes taken per day", xlab ="# Steps")
 dev.off()
@@ -89,7 +92,7 @@ Day <- function(date) {
 new_data$day <- as.factor(sapply(new_data$date, Day))
 
 newmean_i_steps <- aggregate(steps ~ interval+day, new_data , FUN =  mean)
-png("plot1.png", 480,480,"px")
+png("plot4.png", 480,480,"px")
 qplot(interval, steps ,data = newmean_i_steps,color = day, geom =("line"),
       main = "Average Daily Activity Pattern", xlab="5-min Interval", 
       ylab = "Steps taken Avrg across all days " )+ facet_grid(day~.)
