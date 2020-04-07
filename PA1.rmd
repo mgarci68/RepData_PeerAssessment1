@@ -18,7 +18,8 @@ if (!file.exists('/repdata_data_activity.zip')){
 
 ## What is mean total number of steps taken per day?
 
-
+- mean = 10766.19
+- median = 10765
 
 ```{r}
 t_steps <- aggregate(steps ~ date, data, sum)
@@ -32,6 +33,9 @@ print(mdn)
 ```
 
 ## What is the average daily activity pattern?
+
+ -    835 
+
 
 ```{r}
 library(ggplot2)
@@ -72,6 +76,8 @@ print(dif_mnd)
 ```
 
 ## Are there differences in activity patterns between weekdays and weekends?
+
+
 
 ```{r}
 Day <- function(date) {
